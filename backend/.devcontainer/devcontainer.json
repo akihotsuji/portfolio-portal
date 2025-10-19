@@ -1,0 +1,26 @@
+{
+  "name": "Portal Backend",
+  "dockerComposeFile": "../../../development/docker/docker-compose.all.yml",
+  "service": "portal-backend",
+  "workspaceFolder": "/app",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-spring-boot",
+        "redhat.java",
+        "vscjava.vscode-maven"
+      ],
+      "settings": {
+        "java.home": "/opt/java/openjdk",
+        "editor.formatOnSave": true,
+        "java.configuration.updateBuildConfiguration": "automatic"
+      }
+    }
+  },
+
+  "postCreateCommand": "./mvnw dependency:go-offline",
+  "forwardPorts": [8080],
+  "runServices": ["db", "portal-backend", "portal-frontend", "nginx"]
+}

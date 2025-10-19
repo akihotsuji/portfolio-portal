@@ -1,0 +1,16 @@
+FROM node:20-alpine
+
+# Dev Container用にbashとgitをインストール
+RUN apk add --no-cache bash git
+
+WORKDIR /app
+
+# package.jsonを先にコピー（キャッシュ効率化）
+COPY package*.json ./
+RUN npm install
+
+# ソースコードはボリュームマウントするのでCOPYしない
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

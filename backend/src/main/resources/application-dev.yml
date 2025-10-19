@@ -1,0 +1,21 @@
+# 開発環境用設定
+# docker-compose.yml で SPRING_PROFILES_ACTIVE=dev を指定すると適用される
+
+spring:
+  jpa:
+    show-sql: true # 開発時はSQLログを表示
+    properties:
+      hibernate:
+        format_sql: true # SQLを整形して表示
+
+  devtools:
+    restart:
+      enabled: true # ホットリロード有効化
+
+logging:
+  level:
+    com.portfolio: DEBUG # 開発時は詳細ログ
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE # SQLパラメータも表示
+
